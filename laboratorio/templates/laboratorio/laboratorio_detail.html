@@ -1,0 +1,24 @@
+{% extends "laboratorio/base.html" %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="text-center">Detalles del Laboratorio</h2>
+    <div class="card my-4">
+        <div class="card-header">
+            <h3>{{ laboratorio.nombre }}</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Director:</strong> {{ director.nombre }}</p>
+            <p><strong>Ciudad:</strong> {{ laboratorio.ciudad }}</p>
+            <p><strong>País:</strong> {{ laboratorio.pais }}</p>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="{% url 'laboratorio:laboratorio_list' %}" class="btn btn-info">Volver a la Lista</a>
+        {% if user.is_authenticated and user.is_staff %}
+        <a href="{% url 'laboratorio:laboratorio_edit' laboratorio.id %}" class="btn btn-warning">Editar Laboratorio</a>
+        <a href="{% url 'laboratorio:laboratorio_delete' laboratorio.id %}" class="btn btn-danger">Eliminar Laboratorio</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

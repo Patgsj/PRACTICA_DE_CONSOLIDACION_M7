@@ -1,0 +1,25 @@
+{% extends "laboratorio/base.html" %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="text-center">Detalles del Producto</h2>
+    <div class="card my-4">
+        <div class="card-header">
+            <h3>{{ producto.nombre }}</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Laboratorio:</strong> {{ producto.laboratorio.nombre }}</p>
+            <p><strong>Fecha de Fabricación:</strong> {{ producto.f_fabricacion }}</p>
+            <p><strong>Precio de Costo:</strong> ${{ producto.p_costo }}</p>
+            <p><strong>Precio de Venta:</strong> ${{ producto.p_venta }}</p>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="{% url 'laboratorio:producto_list' %}" class="btn btn-info">Volver a la Lista</a>
+        {% if user.is_authenticated and user.is_staff %}
+        <a href="{% url 'laboratorio:producto_edit' producto.id %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'laboratorio:producto_delete' producto.id %}" class="btn btn-danger">Eliminar</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

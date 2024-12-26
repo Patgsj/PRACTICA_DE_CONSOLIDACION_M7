@@ -1,0 +1,23 @@
+{% extends "laboratorio/base.html" %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="text-center">Detalles del Director General</h2>
+    <div class="card my-4">
+        <div class="card-header">
+            <h3>{{ director.nombre }}</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Especialidad:</strong> {{ director.especialidad }}</p>
+            <p><strong>Laboratorio Asociado:</strong> {{ director.laboratorio.nombre }}</p>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="{% url 'laboratorio:director_list' %}" class="btn btn-info">Volver a la Lista</a>
+        {% if user.is_authenticated and user.is_staff %}
+        <a href="{% url 'laboratorio:director_edit' director.id %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'laboratorio:director_delete' director.id %}" class="btn btn-danger">Eliminar</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "laboratorio/base.html" %}
+{% block content %}
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">
+                {% if form.instance.pk %}
+                    Editar Producto
+                {% else %}
+                    Agregar Producto
+                {% endif %}
+            </h2>
+            <form method="post" action="{% if form.instance.pk %}{% url 'laboratorio:producto_edit' form.instance.pk %}{% else %}{% url 'laboratorio:producto_add' %}{% endif %}" class="card p-4 shadow-sm border-0">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_nombre" class="form-label">Nombre del Producto:</label>
+                    {{ form.nombre }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_laboratorio" class="form-label">Laboratorio:</label>
+                    {{ form.laboratorio }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_f_fabricacion" class="form-label">Fecha de Fabricación:</label>
+                    {{ form.f_fabricacion }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_p_costo" class="form-label">Precio de Costo:</label>
+                    {{ form.p_costo }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_p_venta" class="form-label">Precio de Venta:</label>
+                    {{ form.p_venta }}
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

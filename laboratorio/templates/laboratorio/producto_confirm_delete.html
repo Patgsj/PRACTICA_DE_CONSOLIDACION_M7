@@ -1,0 +1,17 @@
+{% extends "laboratorio/base.html" %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="text-center">Confirmar Eliminación</h2>
+    <div class="alert alert-danger text-center" role="alert">
+        ¿Estás seguro de que deseas eliminar el producto <strong>{{ producto.nombre }}</strong>?
+    </div>
+    <div class="text-center">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="{% url 'laboratorio:producto_list' %}" class="btn btn-primary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
